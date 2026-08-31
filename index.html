@@ -176,7 +176,7 @@
   .day-check{display:flex;align-items:center;justify-content:center;gap:10px;border:1px solid var(--line-2);border-radius:3px;padding:12px 14px;cursor:pointer;font-size:.92rem;color:var(--ink);text-align:center}
   .day-check input{accent-color:var(--water);flex:none}
   .day-check:has(input:checked){border-color:var(--water);background:rgba(67,96,90,.09)}
-  @media(max-width:560px){.days-check{grid-template-columns:1fr}}
+  @media(max-width:560px){.days-check{grid-template-columns:1fr}.day-check{flex-direction:column;padding:18px 14px}}
   .btn{display:block;width:100%;cursor:pointer;background:var(--water);color:var(--paper);border:1px solid var(--water);font-family:var(--sans);font-size:.8rem;letter-spacing:.18em;text-transform:uppercase;padding:15px 20px;border-radius:3px;margin-top:8px;transition:background .2s ease}
   .btn:hover{background:var(--water-deep)}
   .btn:disabled{opacity:.6;cursor:default}
@@ -255,14 +255,14 @@
         <div class="dow">Saturday</div>
         <div class="num">17</div>
         <div class="mon">July</div>
-        <div class="ev">Helsinki</div>
+        <div class="ev">Helsinki Social</div>
         <div class="note">Optional</div>
       </div>
       <div class="day">
         <div class="dow">Sunday</div>
         <div class="num">18</div>
         <div class="mon">July</div>
-        <div class="ev">Rehearsal Dinner</div>
+        <div class="ev">Welcome Party</div>
         <div class="note">Optional</div>
       </div>
       <div class="day main">
@@ -337,8 +337,8 @@
       <div class="field">
         <label>Which days do you hope to join? <span style="text-transform:none;letter-spacing:0;color:#9aa199">(preliminary — tick any)</span></label>
         <div class="days-check">
-          <label class="day-check"><input type="checkbox" name="entry.1197740069" value="Saturday 17 July — Helsinki"> Sat 17 · Helsinki</label>
-          <label class="day-check"><input type="checkbox" name="entry.1197740069" value="Sunday 18 July — Rehearsal Dinner"> Sun 18 · Rehearsal Dinner</label>
+          <label class="day-check"><input type="checkbox" name="entry.1197740069" value="Saturday 17 July — Helsinki Social"> Sat 17 · Helsinki Social</label>
+          <label class="day-check"><input type="checkbox" name="entry.1197740069" value="Sunday 18 July — Welcome Party"> Sun 18 · Welcome Party</label>
           <label class="day-check"><input type="checkbox" name="entry.1197740069" value="Monday 19 July — The Wedding"> Mon 19 · The Wedding</label>
           <label class="day-check"><input type="checkbox" name="entry.1197740069" value="Tuesday 20 July — Brunch"> Tue 20 · Brunch</label>
         </div>
