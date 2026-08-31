@@ -84,7 +84,7 @@
   .scroll-cue span{display:block;margin-top:8px;font-size:1rem}
 
   /* ---------- WEEKEND ---------- */
-  .weekend{padding:clamp(64px,11vw,120px) 0;border-top:1px solid var(--line);text-align:center}
+  .weekend{padding:clamp(64px,11vw,120px) 0 clamp(48px,8vw,80px);border-top:1px solid var(--line);text-align:center}
   .weekend .eyebrow{
     font-size:.72rem;letter-spacing:.28em;text-transform:uppercase;color:var(--water);margin:0 0 1.3rem;
   }
@@ -146,6 +146,46 @@
   footer .names-sm{font-family:var(--serif);font-weight:300;font-size:1.8rem}
   footer .names-sm .amp{color:var(--water);font-style:italic}
   footer .fmeta{margin-top:.9rem;font-size:.74rem;letter-spacing:.22em;text-transform:uppercase;color:var(--stone)}
+
+  /* ---------- FAQ ---------- */
+  .faq{padding:clamp(40px,7vw,72px) 0 clamp(64px,10vw,110px);border-top:1px solid var(--line)}
+  .faq .fhead{text-align:center;margin-bottom:2.4rem}
+  .faq .eyebrow{font-size:.72rem;letter-spacing:.28em;text-transform:uppercase;color:var(--water);margin:0 0 1.3rem}
+  .faq h2{font-family:var(--serif);font-weight:300;font-size:clamp(1.9rem,5vw,2.9rem);line-height:1.08;letter-spacing:-.01em;margin:0}
+  .faq-list{max-width:680px;margin:0 auto}
+  .faq details{border-top:1px solid var(--line)}
+  .faq details:last-of-type{border-bottom:1px solid var(--line)}
+  .faq summary{list-style:none;cursor:pointer;padding:22px 42px 22px 0;position:relative;font-family:var(--serif);font-weight:400;font-size:1.2rem;color:var(--ink)}
+  .faq summary::-webkit-details-marker{display:none}
+  .faq summary::after{content:"+";position:absolute;right:2px;top:50%;transform:translateY(-50%);font-family:var(--sans);font-weight:300;font-size:1.4rem;color:var(--water)}
+  .faq details[open] summary::after{content:"\2013"}
+  .faq .a{padding:0 8px 24px 0;color:#40483f;font-size:1rem;line-height:1.7;max-width:64ch}
+
+  /* ---------- DETAILS / PRELIMINARY RSVP ---------- */
+  .rsvp{padding:clamp(64px,10vw,110px) 0;border-top:1px solid var(--line);text-align:center}
+  .rsvp .eyebrow{font-size:.72rem;letter-spacing:.28em;text-transform:uppercase;color:var(--water);margin:0 0 1.3rem}
+  .rsvp h2{font-family:var(--serif);font-weight:300;font-size:clamp(1.9rem,5vw,2.9rem);line-height:1.08;letter-spacing:-.01em;margin:0 0 1.2rem}
+  .rsvp .lead{max-width:52ch;margin:0 auto 2.6rem;color:#33413a;font-size:1.06rem}
+  .form{max-width:520px;margin:0 auto;text-align:left}
+  .field{margin-bottom:18px}
+  .field label{display:block;font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--stone);margin-bottom:.55rem}
+  .field input,.field textarea{width:100%;background:#fff;border:1px solid var(--line-2);color:var(--ink);font-family:var(--sans);font-size:1rem;padding:12px 14px;border-radius:3px}
+  .field input:focus,.field textarea:focus{outline:none;border-color:var(--water)}
+  .field textarea{resize:vertical;min-height:82px}
+  .days-check{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .day-check{display:flex;align-items:center;justify-content:center;gap:10px;border:1px solid var(--line-2);border-radius:3px;padding:12px 14px;cursor:pointer;font-size:.92rem;color:var(--ink);text-align:center}
+  .day-check input{accent-color:var(--water);flex:none}
+  .day-check:has(input:checked){border-color:var(--water);background:rgba(67,96,90,.09)}
+  @media(max-width:560px){.days-check{grid-template-columns:1fr}}
+  .btn{display:block;width:100%;cursor:pointer;background:var(--water);color:var(--paper);border:1px solid var(--water);font-family:var(--sans);font-size:.8rem;letter-spacing:.18em;text-transform:uppercase;padding:15px 20px;border-radius:3px;margin-top:8px;transition:background .2s ease}
+  .btn:hover{background:var(--water-deep)}
+  .btn:disabled{opacity:.6;cursor:default}
+  .form-note{font-size:.8rem;color:var(--stone);margin-top:14px;text-align:center}
+  .thanks{max-width:520px;margin:0 auto}
+  .thanks .mark{font-family:var(--serif);font-style:italic;font-size:2.1rem;color:var(--water);margin-bottom:.3rem}
+  .thanks h3{font-family:var(--serif);font-weight:300;font-size:1.8rem;margin:0 0 .6rem}
+  .thanks p{color:#40483f;max-width:44ch;margin:0 auto}
+  .hide{display:none}
 
   /* reveal */
   .reveal{opacity:0;transform:translateY(16px);transition:opacity .8s ease,transform .8s ease}
@@ -240,8 +280,80 @@
       </div>
     </div>
 
-    <p class="followup reveal">A formal invitation, with all the details, will follow.</p>
   </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section class="faq">
+  <div class="wrap">
+    <div class="fhead reveal">
+      <p class="eyebrow">Good to know</p>
+      <h2>Questions</h2>
+    </div>
+    <div class="faq-list reveal">
+      <details>
+        <summary>Can we bring the children?</summary>
+        <div class="a">As much as we adore your little ones, we've chosen to make the celebration an adults-only occasion — a chance for everyone to properly relax and enjoy the weekend. We hope the long notice gives you plenty of time to arrange a night (or a few) off.</div>
+      </details>
+      <details>
+        <summary>What should I do about accommodation?</summary>
+        <div class="a">It's entirely up to you when you travel over and where you stay. That said, we're organising accommodation for our guests for the <strong>Sunday and Monday nights</strong>, both at the venue and nearby — we'll share those details in the formal invitation. If you'd like to make a longer trip of it, we'd suggest spending the <strong>Friday and Saturday nights in Helsinki</strong>.</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DETAILS / PRELIMINARY RSVP ============ -->
+<!--
+  GOOGLE FORM WIRING — connected to the live Google Form (responses land in its Google Sheet).
+    1. <form action> -> https://docs.google.com/forms/d/e/FORM_ID/formResponse
+    2. each field's name -> entry.XXXXXXXXX (the entry ID from the Google Form)
+         name    -> entry.1042530126
+         email   -> entry.1812482392
+         address -> entry.1326828423
+         days    -> entry.1197740069  (all four checkboxes share the SAME id)
+  Responses flow into the form's linked Google Sheet. Submit posts into the hidden
+  iframe so the guest sees the thank-you message instead of the Google page.
+-->
+<section class="rsvp" id="details">
+  <div class="wrap">
+    <p class="eyebrow reveal">Before the invitations</p>
+    <h2 class="reveal">Send us your details</h2>
+    <p class="lead reveal">So we can post you a formal invitation and get a rough idea of numbers, please share your details below. This is only a preliminary head count — nothing is set in stone, and the proper RSVP will come with your invitation.</p>
+
+    <form class="form reveal" id="rsvpForm" action="https://docs.google.com/forms/d/e/1FAIpQLSf4wMPY5AHH7ZD_QthhmD4BA5O_SyfRfKdGS-h0xUWDTJ9inA/formResponse" method="POST" target="hidden_iframe">
+      <div class="field">
+        <label for="f-name">Full name(s)</label>
+        <input type="text" id="f-name" name="entry.1042530126" required autocomplete="name" placeholder="First and last name">
+      </div>
+      <div class="field">
+        <label for="f-email">Email address</label>
+        <input type="email" id="f-email" name="entry.1812482392" required autocomplete="email" placeholder="you@example.com">
+      </div>
+      <div class="field">
+        <label for="f-address">Postal address <span style="text-transform:none;letter-spacing:0;color:#9aa199">(so we can send your invitation)</span></label>
+        <textarea id="f-address" name="entry.1326828423" required autocomplete="street-address" placeholder="Street, city, postcode, and country"></textarea>
+      </div>
+      <div class="field">
+        <label>Which days do you hope to join? <span style="text-transform:none;letter-spacing:0;color:#9aa199">(preliminary — tick any)</span></label>
+        <div class="days-check">
+          <label class="day-check"><input type="checkbox" name="entry.1197740069" value="Saturday 17 July — Helsinki"> Sat 17 · Helsinki</label>
+          <label class="day-check"><input type="checkbox" name="entry.1197740069" value="Sunday 18 July — Rehearsal Dinner"> Sun 18 · Rehearsal Dinner</label>
+          <label class="day-check"><input type="checkbox" name="entry.1197740069" value="Monday 19 July — The Wedding"> Mon 19 · The Wedding</label>
+          <label class="day-check"><input type="checkbox" name="entry.1197740069" value="Tuesday 20 July — Brunch"> Tue 20 · Brunch</label>
+        </div>
+      </div>
+      <button type="submit" class="btn" id="rsvpSubmit">Send details</button>
+      <p class="form-note">Formal invitations will follow by post — this just helps us plan.</p>
+    </form>
+
+    <div class="thanks hide reveal" id="rsvpThanks">
+      <div class="mark">Erika &amp; Dom</div>
+      <h3>Thank you!</h3>
+      <p>We've got your details and can't wait to celebrate with you. Keep an eye on your postbox — your formal invitation will follow.</p>
+    </div>
+  </div>
+  <iframe name="hidden_iframe" id="hidden_iframe" title="hidden" style="display:none"></iframe>
 </section>
 
 <!-- ============ FOOTER ============ -->
@@ -322,6 +434,31 @@
       document.body.appendChild(a);a.click();document.body.removeChild(a);
       setTimeout(function(){URL.revokeObjectURL(url);},1500);
     });
+  }
+
+  // ----- Details / preliminary RSVP form -----
+  var rform=document.getElementById("rsvpForm"),
+      rthanks=document.getElementById("rsvpThanks"),
+      rframe=document.getElementById("hidden_iframe"),
+      rsubmitted=false;
+  if(rform){
+    var action=rform.getAttribute("action")||"";
+    var wired=/^https?:\/\//.test(action) && action.indexOf("GOOGLE_FORM")===-1;
+    function rShowThanks(){
+      rform.classList.add("hide");
+      rthanks.classList.remove("hide");
+      rthanks.scrollIntoView({behavior:reduce?"auto":"smooth",block:"center"});
+    }
+    rform.addEventListener("submit",function(evt){
+      if(!wired){
+        // Not connected to a Google Form yet — preview the success flow without posting.
+        evt.preventDefault();
+        rShowThanks();
+        return;
+      }
+      rsubmitted=true; // real submit posts into the hidden iframe
+    });
+    if(rframe){rframe.addEventListener("load",function(){if(rsubmitted){rShowThanks();}});}
   }
 })();
 </script>
