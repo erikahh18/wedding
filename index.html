@@ -181,6 +181,8 @@
   .btn:hover{background:var(--water-deep)}
   .btn:disabled{opacity:.6;cursor:default}
   .form-note{font-size:.8rem;color:var(--stone);margin-top:14px;text-align:center}
+  .form-error{font-size:.85rem;color:#9a4a4a;margin-top:14px;text-align:center;line-height:1.55}
+  .form-error a{color:var(--water);text-decoration:underline;text-underline-offset:2px}
   .thanks{max-width:520px;margin:0 auto}
   .thanks .mark{font-family:var(--serif);font-style:italic;font-size:2.1rem;color:var(--water);margin-bottom:.3rem}
   .thanks h3{font-family:var(--serif);font-weight:300;font-size:1.8rem;margin:0 0 .6rem}
@@ -321,7 +323,7 @@
     <h2 class="reveal">Send us your details</h2>
     <p class="lead reveal">So we can post you a formal invitation and get a rough idea of numbers, please share your details below. This is only a preliminary head count — nothing is set in stone, and the proper RSVP will come with your invitation.</p>
 
-    <form class="form reveal" id="rsvpForm" action="https://docs.google.com/forms/d/e/1FAIpQLSf4wMPY5AHH7ZD_QthhmD4BA5O_SyfRfKdGS-h0xUWDTJ9inA/formResponse" method="POST" target="hidden_iframe">
+    <form class="form reveal" id="rsvpForm" action="https://docs.google.com/forms/d/e/1FAIpQLSf4wMPY5AHH7ZD_QthhmD4BA5O_SyfRfKdGS-h0xUWDTJ9inA/formResponse" method="POST">
       <div class="field">
         <label for="f-name">Full name(s)</label>
         <input type="text" id="f-name" name="entry.1042530126" required autocomplete="name" placeholder="First and last name">
@@ -345,6 +347,7 @@
       </div>
       <button type="submit" class="btn" id="rsvpSubmit">Send details</button>
       <p class="form-note">Formal invitations will follow by post — this just helps us plan.</p>
+      <p class="form-error hide" id="rsvpError">That didn't send — your connection may have dropped. Please tap <strong>Send details</strong> again, or use <a href="https://docs.google.com/forms/d/e/1FAIpQLSf4wMPY5AHH7ZD_QthhmD4BA5O_SyfRfKdGS-h0xUWDTJ9inA/viewform" target="_blank" rel="noopener">this form</a> instead.</p>
     </form>
 
     <div class="thanks hide reveal" id="rsvpThanks">
@@ -353,7 +356,6 @@
       <p>We've got your details and can't wait to celebrate with you. Keep an eye on your postbox — your formal invitation will follow.</p>
     </div>
   </div>
-  <iframe name="hidden_iframe" id="hidden_iframe" title="hidden" style="display:none"></iframe>
 </section>
 
 <!-- ============ FOOTER ============ -->
@@ -439,26 +441,33 @@
   // ----- Details / preliminary RSVP form -----
   var rform=document.getElementById("rsvpForm"),
       rthanks=document.getElementById("rsvpThanks"),
-      rframe=document.getElementById("hidden_iframe"),
-      rsubmitted=false;
+      rbtn=document.getElementById("rsvpSubmit"),
+      rerror=document.getElementById("rsvpError");
   if(rform){
     var action=rform.getAttribute("action")||"";
-    var wired=/^https?:\/\//.test(action) && action.indexOf("GOOGLE_FORM")===-1;
     function rShowThanks(){
       rform.classList.add("hide");
       rthanks.classList.remove("hide");
       rthanks.scrollIntoView({behavior:reduce?"auto":"smooth",block:"center"});
     }
     rform.addEventListener("submit",function(evt){
-      if(!wired){
-        // Not connected to a Google Form yet — preview the success flow without posting.
-        evt.preventDefault();
-        rShowThanks();
-        return;
+      evt.preventDefault();
+      if(rform.checkValidity && !rform.checkValidity()){ if(rform.reportValidity){rform.reportValidity();} return; }
+      if(rerror){rerror.classList.add("hide");}
+      var label=rbtn.textContent;
+      rbtn.disabled=true; rbtn.textContent="Sending\u2026";
+      var body=new URLSearchParams(new FormData(rform));
+      function send(attempt){
+        return fetch(action,{method:"POST",mode:"no-cors",body:body})
+          .then(function(){ rShowThanks(); })
+          .catch(function(){
+            if(attempt<2){ return new Promise(function(res){setTimeout(res,1500);}).then(function(){ return send(attempt+1); }); }
+            rbtn.disabled=false; rbtn.textContent=label;
+            if(rerror){rerror.classList.remove("hide"); rerror.scrollIntoView({behavior:reduce?"auto":"smooth",block:"center"});}
+          });
       }
-      rsubmitted=true; // real submit posts into the hidden iframe
+      send(1);
     });
-    if(rframe){rframe.addEventListener("load",function(){if(rsubmitted){rShowThanks();}});}
   }
 })();
 </script>
