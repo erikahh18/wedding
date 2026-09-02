@@ -183,6 +183,9 @@
   .form-note{font-size:.8rem;color:var(--stone);margin-top:14px;text-align:center}
   .form-error{font-size:.85rem;color:#9a4a4a;margin-top:14px;text-align:center;line-height:1.55}
   .form-error a{color:var(--water);text-decoration:underline;text-underline-offset:2px}
+  .gform-wrap{max-width:680px;margin:2.4rem auto 0;border:1px solid var(--line);border-radius:4px;overflow:hidden;background:#fff}
+  .gform-embed{width:100%;height:1120px;border:0;display:block}
+  @media(max-width:560px){.gform-embed{height:1550px}}
   .thanks{max-width:520px;margin:0 auto}
   .thanks .mark{font-family:var(--serif);font-style:italic;font-size:2.1rem;color:var(--water);margin-bottom:.3rem}
   .thanks h3{font-family:var(--serif);font-weight:300;font-size:1.8rem;margin:0 0 .6rem}
@@ -305,55 +308,14 @@
   </div>
 </section>
 
-<!-- ============ DETAILS / PRELIMINARY RSVP ============ -->
-<!--
-  GOOGLE FORM WIRING — connected to the live Google Form (responses land in its Google Sheet).
-    1. <form action> -> https://docs.google.com/forms/d/e/FORM_ID/formResponse
-    2. each field's name -> entry.XXXXXXXXX (the entry ID from the Google Form)
-         name    -> entry.1042530126
-         email   -> entry.1812482392
-         address -> entry.1326828423
-         days    -> entry.1197740069  (all four checkboxes share the SAME id)
-  Responses flow into the form's linked Google Sheet. Submit posts into the hidden
-  iframe so the guest sees the thank-you message instead of the Google page.
--->
+<!-- ============ DETAILS / PRELIMINARY RSVP (embedded Google Form) ============ -->
 <section class="rsvp" id="details">
   <div class="wrap">
     <p class="eyebrow reveal">Before the invitations</p>
     <h2 class="reveal">Send us your details</h2>
     <p class="lead reveal">So we can post you a formal invitation and get a rough idea of numbers, please share your details below. This is only a preliminary head count — nothing is set in stone, and the proper RSVP will come with your invitation.</p>
-
-    <form class="form reveal" id="rsvpForm" action="https://docs.google.com/forms/d/e/1FAIpQLSf4wMPY5AHH7ZD_QthhmD4BA5O_SyfRfKdGS-h0xUWDTJ9inA/formResponse" method="POST">
-      <div class="field">
-        <label for="f-name">Full name(s)</label>
-        <input type="text" id="f-name" name="entry.1042530126" required autocomplete="name" placeholder="First and last name">
-      </div>
-      <div class="field">
-        <label for="f-email">Email address</label>
-        <input type="email" id="f-email" name="entry.1812482392" required autocomplete="email" placeholder="you@example.com">
-      </div>
-      <div class="field">
-        <label for="f-address">Postal address <span style="text-transform:none;letter-spacing:0;color:#9aa199">(so we can send your invitation)</span></label>
-        <textarea id="f-address" name="entry.1326828423" required autocomplete="street-address" placeholder="Street, city, postcode, and country"></textarea>
-      </div>
-      <div class="field">
-        <label>Which days do you hope to join? <span style="text-transform:none;letter-spacing:0;color:#9aa199">(preliminary — tick any)</span></label>
-        <div class="days-check">
-          <label class="day-check"><input type="checkbox" name="entry.1197740069" value="Saturday 17 July — Helsinki Social"> Sat 17 · Helsinki Social</label>
-          <label class="day-check"><input type="checkbox" name="entry.1197740069" value="Sunday 18 July — Welcome Party"> Sun 18 · Welcome Party</label>
-          <label class="day-check"><input type="checkbox" name="entry.1197740069" value="Monday 19 July — The Wedding"> Mon 19 · The Wedding</label>
-          <label class="day-check"><input type="checkbox" name="entry.1197740069" value="Tuesday 20 July — Brunch"> Tue 20 · Brunch</label>
-        </div>
-      </div>
-      <button type="submit" class="btn" id="rsvpSubmit">Send details</button>
-      <p class="form-note">Formal invitations will follow by post — this just helps us plan.</p>
-      <p class="form-error hide" id="rsvpError">That didn't send — your connection may have dropped. Please tap <strong>Send details</strong> again, or use <a href="https://docs.google.com/forms/d/e/1FAIpQLSf4wMPY5AHH7ZD_QthhmD4BA5O_SyfRfKdGS-h0xUWDTJ9inA/viewform" target="_blank" rel="noopener">this form</a> instead.</p>
-    </form>
-
-    <div class="thanks hide reveal" id="rsvpThanks">
-      <div class="mark">Erika &amp; Dom</div>
-      <h3>Thank you!</h3>
-      <p>We've got your details and can't wait to celebrate with you. Keep an eye on your postbox — your formal invitation will follow.</p>
+    <div class="gform-wrap reveal">
+      <iframe class="gform-embed" title="Send us your details" src="https://docs.google.com/forms/d/e/1FAIpQLSf4wMPY5AHH7ZD_QthhmD4BA5O_SyfRfKdGS-h0xUWDTJ9inA/viewform?embedded=true" loading="lazy">Loading…</iframe>
     </div>
   </div>
 </section>
